@@ -1,9 +1,8 @@
 # Use an official Python runtime as a parent image
-
 FROM python:3.8-slim
 
-# Set the working directory to /RuralLoadApprovalBackgroundVerificationProject
-WORKDIR /RuralLoadApprovalBackgroundVerificationProject
+# Set the working directory to /RuralloanApprovalBackgroundVerificationProject
+WORKDIR /RuralloanApprovalBackgroundVerificationProject
 
 # Copy only the necessary files into the container
 COPY src/__init__.py src/__init__.py
@@ -22,10 +21,9 @@ COPY src/RuralLoanApprovalBackgroundVerification/utils/__init__.py src/RuralLoan
 COPY src/RuralLoanApprovalBackgroundVerification/utils/utils.py src/RuralLoanApprovalBackgroundVerification/utils/utils.py
 COPY requirements.txt requirements.txt
 COPY setup.py setup.py
-# COPY init_setup.sh init_setup.sh
 
-# Copy the dataset to the /RuralLoadApprovalBackgroundVerificationProject/dataset directory in the container
-COPY data/trainingData.csv src/RuralLoadApprovalBackgroundVerificationProject/dataset
+# Copy the dataset to the /RuralloanApprovalBackgroundVerificationProject/dataset directory in the container
+COPY data/trainingData.csv dataset/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
@@ -37,4 +35,4 @@ EXPOSE 80
 ENV NAME PSK
 
 # Run the training pipeline script with the provided dataset path when the container launches
-CMD ["python", "src/RuralLoanApprovalBackgroundVerification/pipelines/training_pipeline.py", "--data", "/RuralLoadApprovalBackgroundVerificationProject/dataset/trainingData.csv"]
+CMD ["python", "src/RuralLoanApprovalBackgroundVerification/pipelines/training_pipeline.py", "--data", "dataset/trainingData.csv"]
