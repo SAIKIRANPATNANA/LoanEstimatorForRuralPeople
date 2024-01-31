@@ -21,7 +21,7 @@ COPY src/RuralLoanApprovalBackgroundVerification/exception.py src/RuralLoanAppro
 COPY src/RuralLoanApprovalBackgroundVerification/utils/__init__.py src/RuralLoanApprovalBackgroundVerification/utils/__init__.py
 COPY src/RuralLoanApprovalBackgroundVerification/utils/utils.py src/RuralLoanApprovalBackgroundVerification/utils/utils.py
 COPY requirements.txt requirements.txt
-# COPY setup.py setup.py
+COPY setup.py setup.py
 # COPY init_setup.sh init_setup.sh
 
 # Copy the dataset to the /RuralLoadApprovalBackgroundVerificationProject/dataset directory in the container
