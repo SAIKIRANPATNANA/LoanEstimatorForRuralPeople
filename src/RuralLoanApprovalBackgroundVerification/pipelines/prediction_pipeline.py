@@ -4,6 +4,7 @@ import pandas as pd
 from src.RuralLoanApprovalBackgroundVerification.logger import logging
 from src.RuralLoanApprovalBackgroundVerification.exception import customexception
 from src.RuralLoanApprovalBackgroundVerification.utils.utils import *
+from src.RuralLoanApprovalBackgroundVerification.components.data_validation import DataValidation
 import mlflow
 mlflow.autolog()
 
@@ -12,13 +13,17 @@ class PredictPipeline:
         pass
     def predict(self,features):
         try:
-            preprocessor_path = os.path.join("artifacts","preprocessor.pkl")
-            model_path = os.path.join("artifacts","model.pkl")
-            preprocessor = load_object(preprocessor_path)
-            model = load_object(model_path)
-            scaled_data = preprocessor.transform(features)
-            pred = model.predict(scaled_data)
-            return pred
+            # obj = DataValidation()
+            # if obj.validate_all_columns(features):
+                preprocessor_path = os.path.join("artifacts","preprocessor.pkl")
+                model_path = os.path.join("artifacts","model.pkl")
+                preprocessor = load_object(preprocessor_path)
+                model = load_object(model_path)
+                scaled_data = preprocessor.transform(features)
+                pred = model.predict(scaled_data)
+                return pred
+            # else: 
+            #     raise "Data is failed to be validated"
         except Exception as e:
             raise customexception(e,sys)
     

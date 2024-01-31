@@ -7,6 +7,7 @@ from src.RuralLoanApprovalBackgroundVerification.components.data_ingestion impor
 from src.RuralLoanApprovalBackgroundVerification.components.data_transformation import DataTransformation
 from src.RuralLoanApprovalBackgroundVerification.components.model_trainer import ModelTrainer
 from src.RuralLoanApprovalBackgroundVerification.components.model_evaluation import ModelEvaluation
+from src.RuralLoanApprovalBackgroundVerification.components.data_validation import DataValidation 
 import mlflow
 mlflow.autolog()
 
@@ -18,6 +19,13 @@ class TrainingPipeline:
             return train_data_path,test_data_path
         except Exception as e:
             raise customexception(e,sys)
+    def start_data_validation(self,df):
+        try: 
+            data_validation = DataValidation()
+            validation_status = data_validation.validate_all_columns(df)
+            return validation_status
+        except:
+            raise e
     def start_data_transformation(self,train_data_path,test_data_path):
         try:
             data_transformation = DataTransformation()
@@ -43,6 +51,8 @@ def start_training():
         obj = TrainingPipeline()
         logging.info("Training pipeline started.")
         train_data_path,test_data_path = obj.start_data_ingestion()
+        df = pd.read_csv("/home/user/Documents/ML_DL_PROJECTS/RuralLoanApprovalBackgroundVerificationProject/data/trainingData.csv")
+        validation_status = obj.start_data_validation(df)
         train_array,test_array = obj.start_data_transformation(train_data_path,test_data_path)
         obj.start_model_training(train_array,test_array)
         obj.start_model_evaluation(train_array,test_array)

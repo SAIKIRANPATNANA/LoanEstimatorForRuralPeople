@@ -9,6 +9,7 @@ list_of_files=[
     f"src/{package_name}/components/__init__.py",
     f"src/{package_name}/components/data_ingestion.py",
     f"src/{package_name}/components/data_transformation.py",
+    f"src/{package_name}/components/data_validation.py",
     f"src/{package_name}/components/model_trainer.py",
     f"src/{package_name}/components/model_evaluation.py",
     f"src/{package_name}/pipelines/__init__.py",
