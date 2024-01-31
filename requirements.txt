@@ -7,4 +7,5 @@ Flask
 mlflow
 dvc
 xgboost
+streamlit
 

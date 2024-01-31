@@ -6,7 +6,6 @@ FROM python:3.8-slim
 WORKDIR /RuralLoadApprovalBackgroundVerificationProject
 
 # Copy only the necessary files into the container
-COPY .github/workflows/.gitkeep .github/workflows/.gitkeep
 COPY src/__init__.py src/__init__.py
 COPY src/RuralLoanApprovalBackgroundVerification/__init__.py src/RuralLoanApprovalBackgroundVerification/__init__.py
 COPY src/RuralLoanApprovalBackgroundVerification/components/__init__.py src/RuralLoanApprovalBackgroundVerification/components/__init__.py
